@@ -11,7 +11,7 @@ class Led{
         error_type_t turn_on();
         error_type_t turn_off();
         error_type_t deinit();
-        //constructor
+        //constructor use to initalize the data member
         Led(uint8_t pin);
         bool activate;
 

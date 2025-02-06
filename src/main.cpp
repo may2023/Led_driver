@@ -1,9 +1,12 @@
 #include <Arduino.h>
 #include <led_driver.h>
 #include <common_header.h>
+#include <segment.h>
 // put function declarations here:
 
 Led led1(19);
+uint8_t led_pins[4] = {15,16,18,21};
+Segment led(led_pins);
 error_type_t err;
 void setup()
 {
@@ -13,6 +16,13 @@ void setup()
   if(err != error_type_t::ERROR_OK){
     exit(1);
   }
+
+  err = led.led_init();
+  if (err != error_type_t::ERROR_OK)
+  {
+    exit(1);
+  }
+  
 
 }
 
@@ -32,4 +42,6 @@ void loop()
   }
   
   delay(2000);
+
+  err = led.blink();
 }
